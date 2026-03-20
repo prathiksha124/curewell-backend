@@ -7,7 +7,7 @@ const doctorSchema = new mongoose.Schema({
     unique: true
   },
   doctorName: String,
-  specializationCode: String // 🔥 linking
+  specializationCode: String 
 });
 
 module.exports = mongoose.model("Doctor", doctorSchema);
