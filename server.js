@@ -13,7 +13,7 @@ app.use(express.json());
 mongoose.connect("mongodb://127.0.0.1:27017/curewell")
   .then(() => console.log("MongoDB Connected"));
 
-// ================= DOCTOR =================
+
 
 app.get("/doctors", async (req, res) => {
   res.json(await Doctor.find());
@@ -45,12 +45,10 @@ app.delete("/doctors/:id", async (req, res) => {
   res.json({ message: "Deleted" });
 });
 
-// 🔥 doctors by specialization
 app.get("/doctors/specialization/:code", async (req, res) => {
   res.json(await Doctor.find({ specializationCode: req.params.code }));
 });
 
-// ================= SPECIALIZATION =================
 
 app.get("/specialization", async (req, res) => {
   res.json(await Specialization.find());
@@ -61,13 +59,13 @@ app.post("/specialization", async (req, res) => {
   res.json({ message: "Added" });
 });
 
-// ================= SURGERY =================
+
 
 app.get("/surgery", async (req, res) => {
   res.json(await Surgery.find());
 });
 
-// 🔥 TODAY FILTER
+
 app.get("/surgery/today", async (req, res) => {
   try {
     const today = new Date().toISOString().split("T")[0];
@@ -89,7 +87,6 @@ app.post("/surgery", async (req, res) => {
   res.json({ message: "Added" });
 });
 
-// 🔥 UPDATE SURGERY WITH VALIDATION
 app.put("/surgery/:id", async (req, res) => {
   const { startTime, endTime } = req.body;
 
